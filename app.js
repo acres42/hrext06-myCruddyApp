@@ -12,6 +12,18 @@ $(document).ready(function(){
     newTextBoxDiv.appendTo(".entries-group");
     counter++;
   });
+
+    $(".btn-remove-entry").click(function () {
+    if(counter==1){
+          alert("No more textbox to remove");
+          return false;
+       }   
+
+    counter--;
+
+        $("#entry" + counter).remove();
+  });
+
   // write to local storage from input when button save clicked
   $('.btn-submit').on('click', function(){
     localStorage.setItem('inputFieldValue'+counter, $('.text-entry').val());
