@@ -6,7 +6,8 @@ $(document).ready(function(){
   $('.btn-add-entry').on('click', function(){
     var newTextBoxDiv = $(document.createElement('div')).attr("id", 'entry'+counter);
     newTextBoxDiv.after().html('<label>entry #'+ counter + ' : </label>' +
-      '<input class="text-entry" type="text-entry" id="text-entry' + counter + '" value="" placeholder="enter your link here">');
+      '<input class="text-entry" type="text-entry" id="text-entry' + counter 
+      + '" value="" placeholder="enter your link here">');
     newTextBoxDiv.appendTo(".entries-group");
     counter++;
   });
@@ -19,7 +20,7 @@ $(document).ready(function(){
 
     counter--;
 
-        $("#entry" + counter).remove();
+    $("#entry" + counter).remove();
   });
 
   // write to local storage from input when button save clicked
@@ -29,13 +30,18 @@ $(document).ready(function(){
     var entries = [];
     for(var i=0; i < getEntriesByClass.length; i++){
       var rando = Math.random().toString(36).substr(2, getEntriesByClass.length);
-      localStorage.setItem('inputFieldValue.' + rando, getEntriesByClass[i].value);
-      var myItemInStorage = localStorage.getItem('inputFieldValue.'+ rando);
+      localStorage.setItem('inputFieldValue' + rando, getEntriesByClass[i].value);
+      // var myItemInStorage = localStorage.getItem('inputFieldValue.'+ rando);
+      // $('.list-display-field').text(myItemInStorage); <<this only shows last one. try appending instead 
+      
+        var keys = Object.keys(localStorage);
+        for (var i = 0, len = localStorage.length; i < len; ++i) {
+          var stowed = (localStorage.getItem(localStorage.key(i)));
+          var newDisplayLinkDiv = $(document.createElement('div')).attr("id", keys[i]);
+          newDisplayLinkDiv.after().html('<p>' +stowed+'</p');
+          newDisplayLinkDiv.appendTo(".list-display-field");
+        }
     }
-
-    // localStorage.setItem('inputFieldValue'+counter, $('.text-entry').val());
-    // var myItemInStorage = localStorage.getItem('inputFieldValue'+counter);
-    // console.log('myItemInStorage', myItemInStorage);
     //TODO clear inputs on submit
 
 
