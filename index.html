@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            HREXT06 Cruddy App: Curate Your Power Animal
-        </title>
-        <!-- <link rel="stylesheet" href="style.css"> -->
-        <meta content="width=device-width, initial-scale=1" name="viewport">
-            <link href="https://unpkg.com/tachyons/css/tachyons.min.css" rel="stylesheet">
-                <script crossorigin="anonymous" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" src="https://code.jquery.com/jquery-3.3.1.js">
-                </script>
-                <script src="app.js">
-                </script>
-            </link>
-        </meta>
-    </head>
+  <head>
+    <title>HREXT06 Cruddy App: Curate Your Power Animal</title>
+    <link rel="stylesheet" href="style.css">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+        <!-- <link href="https://unpkg.com/tachyons/css/tachyons.min.css" rel="stylesheet"> -->
+    <script crossorigin="anonymous" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" src="https://code.jquery.com/jquery-3.3.1.js">
+    </script>
+    <script src="app.js"></script>
+        </link>
+    </meta>
+  </head>
     <body>
-        <div class="container">
-            <div class="text-boxes-group">
-                <label>entry #1: </label>
-                <input class="text-entry" id="entry1" placeholder="enter your link here" type="text">
-                </input>
-            </div>
-            <button class="btn-add-entry" type="button">
-                add more links
-            </button>
-            <button class="btn-submit" type="button">
-                save value
-            </button>
-            <button class="btn-delete" type="button">
-                delete value
-            </button>
+      <div class="title-bar">Curate Your Power Animal</div>
+      <div class="container">
+
+        <div class="text-boxes-group">
+          <div class="entries-group">
+            <label>entry #1 : </label>
+            <input class="text-entry" id="entry1" placeholder="enter your link here" type="text"></input>
+          </div>
+            <button class="btn-add-entry" type="button">add more link</button>
+            <button class="btn-submit" type="button">save links</button>
         </div>
-        <div class="list-display-field">
-            nothing to display yet
+  
+        <div class="display-group">
+          giphy goes here
         </div>
+
+        <div class="links-boxes-group">
+          <button class="btn-delete" type="button">delete value</button>
+          <div class="list-display-field">nothing to display yet</div>
+        </div>
+
+      <div>
     </body>
 </html>

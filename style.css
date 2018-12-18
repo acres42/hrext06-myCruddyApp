@@ -1,5 +1,55 @@
-.text-boxes-group{
-  height: 250px;
-  width: 500px;
+@import url('https://fonts.googleapis.com/css?family=Righteous');
+
+.body{
+  display: flex;
+  margin: 0px;
+}
+
+.container{
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
   border: black solid 3px;
+}
+
+
+.title-bar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  background-color: #42bff4;
+  color: white;
+  font-family: 'Righteous', cursive;
+  font-size: 48px;
+  width: 100%;
+}
+
+.text-boxes-group {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 30%;
+  padding: 10px;
+  border: green solid 3px;
+}
+
+.entries-group{
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.display-group {
+  display: flex;
+  justify-content: flex-start;
+  width: 40%;
+  padding: 10px;
+  border: red solid 3px;
+}
+
+.links-boxes-group {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 30%;
+  padding: 10px;
+  border: gray solid 3px;
 }

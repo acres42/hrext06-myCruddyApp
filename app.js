@@ -7,20 +7,23 @@ $(document).ready(function(){
     
     var newTextBoxDiv = $(document.createElement('div')).attr("id", 'entry'+counter);
     newTextBoxDiv.after().html('<label>entry #'+ counter + ' : </label>' +
-      '<input type="text-entry" name="text-entry"' + counter + '" id="text-entry' + counter + '" value="">');
-    newTextBoxDiv.appendTo(".text-boxes-group");
+      '<input type="text-entry" name="text-entry"' + counter +
+       '" id="text-entry' + counter + '" value="" placeholder="enter your link here">');
+    newTextBoxDiv.appendTo(".entries-group");
     counter++;
   });
   // write to local storage from input when button save clicked
   $('.btn-submit').on('click', function(){
-    localStorage.setItem('inputFieldValue', $('.text-entry').val());
-    var myItemInStorage = localStorage.getItem('inputFieldValue');
+    localStorage.setItem('inputFieldValue'+counter, $('.text-entry').val());
+    var myItemInStorage = localStorage.getItem('inputFieldValue'+counter);
     // console.log('myItemInStorage', myItemInStorage);
+    //clear inputs on form
 
 
   // delete from local storage when delete button clicked
+  //TODO this needs to be fixed to work with numbered storage items somehow
   $('.btn-delete').on('click', function(){
-    localStorage.removeItem('inputFieldValue');
+    localStorage.removeItem('inputFieldValue'+count);
   });
 
 
