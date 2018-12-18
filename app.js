@@ -4,11 +4,9 @@ $(document).ready(function(){
   /*********************Buttons*******************/
 
   $('.btn-add-entry').on('click', function(){
-    
     var newTextBoxDiv = $(document.createElement('div')).attr("id", 'entry'+counter);
     newTextBoxDiv.after().html('<label>entry #'+ counter + ' : </label>' +
-      '<input type="text-entry" name="text-entry"' + counter +
-       '" id="text-entry' + counter + '" value="" placeholder="enter your link here">');
+      '<input class="text-entry" type="text-entry" id="text-entry' + counter + '" value="" placeholder="enter your link here">');
     newTextBoxDiv.appendTo(".entries-group");
     counter++;
   });
@@ -26,21 +24,31 @@ $(document).ready(function(){
 
   // write to local storage from input when button save clicked
   $('.btn-submit').on('click', function(){
-    localStorage.setItem('inputFieldValue'+counter, $('.text-entry').val());
-    var myItemInStorage = localStorage.getItem('inputFieldValue'+counter);
+
+    var getEntriesByClass = document.getElementsByClassName('text-entry');
+    var entries = [];
+    for(var i=0; i < getEntriesByClass.length; i++){
+      var rando = Math.random().toString(36).substr(2, getEntriesByClass.length);
+      localStorage.setItem('inputFieldValue.' + rando, getEntriesByClass[i].value);
+      var myItemInStorage = localStorage.getItem('inputFieldValue.'+ rando);
+    }
+
+    // localStorage.setItem('inputFieldValue'+counter, $('.text-entry').val());
+    // var myItemInStorage = localStorage.getItem('inputFieldValue'+counter);
     // console.log('myItemInStorage', myItemInStorage);
-    //clear inputs on form
+    //TODO clear inputs on submit
 
 
   // delete from local storage when delete button clicked
   //TODO this needs to be fixed to work with numbered storage items somehow
   $('.btn-delete').on('click', function(){
-    localStorage.removeItem('inputFieldValue'+count);
+    localStorage.removeItem('inputFieldValue'+counter);
   });
 
 
     // display the value here
-    $('.list-display-field').text(myItemInStorage); // ??
+    // TODO: turn this back on when multi entry fixed
+    // $('.list-display-field').text(myItemInStorage); // ??
 
-  });
+  }); //EOF 'btn-submit' on click
 });
