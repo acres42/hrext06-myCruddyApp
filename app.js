@@ -28,13 +28,13 @@ function displayLinksFromStorage(){
 
     $(".btn-remove-entry").click(function () {
     if(counter==1){
-          alert("No more textbox to remove");
+          alert("No more textboxes to remove");
           return false;
        }
 
     counter--;
 
-        $("#entry" + counter).remove();
+    $("#entry" + counter).remove();
   }); //EOF btn remove entry
 
   // write to local storage from input when button save clicked
@@ -42,28 +42,26 @@ function displayLinksFromStorage(){
 
     var getEntriesByClass = document.getElementsByClassName('text-entry');
     for(var i=0; i < getEntriesByClass.length; i++){
-      console.log(i);
       var rando = Math.random().toString(36).substr(2, getEntriesByClass.length);
       localStorage.setItem('inputFieldValue' + rando, getEntriesByClass[i].value);
       displayLinksFromStorage();
     }
 
-    // localStorage.setItem('inputFieldValue'+counter, $('.text-entry').val());
-    // var myItemInStorage = localStorage.getItem('inputFieldValue'+counter);
-    // console.log('myItemInStorage', myItemInStorage);
-    //TODO clear inputs on submit
+
+    //delete all entries except entry #1 & reset form values
+    var entries = $('.entries-group').children().toArray();
+    for(var i = entries.length; i > 1; i--){
+      $("#entry" + i).remove();
+    }
+    counter = 2;
+    $('#text-entry1').val('');
+    $('#text-entry1').attr("placeholder", "enter your link here");
 
 
+  }); //EOF 'btn-submit' on click
   // delete from local storage when delete button clicked
   //TODO this needs to be fixed to work with numbered storage items somehow
   $('.btn-delete').on('click', function(){
     localStorage.removeItem('inputFieldValue'+counter);
-  });
-
-
-    // display the value here
-    // TODO: turn this back on when multi entry fixed
-    // $('.list-display-field').text(myItemInStorage); // ??
-
-  }); //EOF 'btn-submit' on click
+  }); //EOF btn-delete
 });
