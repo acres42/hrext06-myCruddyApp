@@ -40,6 +40,7 @@
 .entries-group{
   display: flex;
   flex-flow: column nowrap;
+  margin: 10px;
 }
 
 .display-group {
@@ -66,7 +67,37 @@
   width: 30px;
 }
 
-#loader_image{
-  opacity: 45%;
-  z-index: 100000;
+.btn-add-entry {
+  margin: 10px;
+  background-color: #87c5ff;
+  color: white;
+
+}
+
+.btn-remove-entry {
+  margin: 10px;
+  background-color: #d70900;
+  color: white;
+}
+
+.btn-submit {
+  margin: 10px;
+  background-color: #5ebb56;
+  color: white;
+}
+
+.btn-load{
+  margin: 10px;
+  background-color: #ffb500;
+}
+
+.btn-delete {
+  margin: 10px;
+  background-color: #fdff00;
+}
+
+.btn-nuke {
+  margin: 10px;
+  background-color: #d70900;
+  color: white;
 }
