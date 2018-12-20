@@ -60,3 +60,8 @@
   background-color: #e0e0e0;
  /* border: gray solid 3px;*/
 }
+
+.bolt {
+  height: 30px;
+  width: 30px;
+}
