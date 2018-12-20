@@ -5,6 +5,8 @@ $(window).ready(function(){
   displayLinksFromStorage();
   reloadButtons();
 
+  $('#loader_img').hide();
+
   /*********************Helper Functions*******************/
 function displayLinksFromStorage(){
   //clear the list-display-field of current. reload with storage items
@@ -43,7 +45,17 @@ $('.btn-delete').on('click', function(){
 
   $('.btn-load').on('click', function(){
     var loadItem = localStorage.getItem($(this).closest('div').attr('id'));
+    //
     $('#load').attr('src', loadItem);
+    $('#load').hide();
+    $('#loader_img').show();
+
+    // main image loaded ?
+    $('#load').on('load', function(){
+      $('#load').show();
+      $('#loader_img').hide();
+    });
+
     reloadButtons();
   });//EOF btn-load
 
