@@ -1,5 +1,5 @@
 $(window).ready(function(){
-  console.log('jQuery loaded');
+
   var counter = 2;
 
   displayLinksFromStorage();

@@ -24,8 +24,8 @@ Create Read Update Delete using localStorage with JS, HTML and CSS
 - [x] update display div for all items in storage after events
 - [x] reload buttons to maintain functionality after events
 - [x] Swap out image placeholder when clicking on display button
-- [ ] add in overlay to spin while requested gif loads
-- [ ] fix button sizes and add appropriate colors to indicate action
+- [x] add in overlay to spin while requested gif loads
+- [x] fix button sizes and add appropriate colors to indicate action
 - [x] Style to look more appealing
 
 - [ ] Optional: Host on repl.it (html,css, js)
