@@ -40,10 +40,12 @@
 
 .display-group {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   width: 40%;
   padding: 10px;
   border: red solid 3px;
+  background-color: #e0e0e0;
 }
 
 .links-boxes-group {

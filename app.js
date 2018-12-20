@@ -48,12 +48,15 @@ function displayLinksFromStorage(){
     }
 
 
-    //delete all entries except entry #1 & reset form values
+    //TODO clear inputs on submit
+    //delete all entries except entry #1
     var entries = $('.entries-group').children().toArray();
     for(var i = entries.length; i > 1; i--){
       $("#entry" + i).remove();
     }
+    //reset global counter to 2
     counter = 2;
+    //clear entry#1 (reset value??)
     $('#text-entry1').val('');
     $('#text-entry1').attr("placeholder", "enter your link here");
 
@@ -64,4 +67,16 @@ function displayLinksFromStorage(){
   $('.btn-delete').on('click', function(){
     localStorage.removeItem('inputFieldValue'+counter);
   }); //EOF btn-delete
+
+  $('.btn-nuke').on('click', function(){
+    var keys = Object.keys(localStorage);
+    keys.forEach(function(el){
+      localStorage.removeItem(el);
+    });
+    displayLinksFromStorage();
+    // for (var i = 0, len = localStorage.length; i < len; ++i) {
+    // var $stowed = (localStorage.getItem(localStorage.key(i)));
+    // localStorage.removeItem($stowed);
+    // }
+  }); //EOF btn nuke
 });
