@@ -3,6 +3,7 @@ $(window).ready(function(){
   var counter = 2;
 
   displayLinksFromStorage();
+  reloadButtons();
 
   /*********************Helper Functions*******************/
 function displayLinksFromStorage(){
@@ -21,20 +22,32 @@ function resetDefaultGif(){
   $('#load').attr('src', 'https://media.giphy.com/media/mzSdSOMg59ZNC/giphy.gif');
 }
 
-$('list-display-field').change('change', function(){
-  console.log('list-display-field changed');
+function reloadButtons(){
+$('.btn-delete').on('click', function(){
+     var removalItem = $(this).closest('div').attr('id');
+     localStorage.removeItem(removalItem);
+     displayLinksFromStorage();
+     resetDefaultGif();
+     reloadButtons();
+}); //EOF btn-delete
 
-// //   $('.btn-delete').on('click', function(){
-// //      var removalItem = $(this).closest('div').attr('id');
-// //      localStorage.removeItem(removalItem);
-// //      displayLinksFromStorage()
-// //     }); //EOF btn-delete
+  $('.btn-nuke').on('click', function(){
+    var keys = Object.keys(localStorage);
+    keys.forEach(function(el){
+      localStorage.removeItem(el);
+    });
+    displayLinksFromStorage();
+    resetDefaultGif();
+    reloadButtons();
+  }); //EOF btn nuke
 
-// //   $('.btn-load').on('click', function(){
-// //     var loadItem = localStorage.getItem($(this).closest('div').attr('id'));
-// //     $('#load').attr('src', loadItem);
-// //   });//EOF btn-load
-});
+  $('.btn-load').on('click', function(){
+    var loadItem = localStorage.getItem($(this).closest('div').attr('id'));
+    $('#load').attr('src', loadItem);
+    reloadButtons();
+  });//EOF btn-load
+
+}
 
 
 
@@ -57,9 +70,11 @@ $('list-display-field').change('change', function(){
     counter--;
 
     $("#entry" + counter).remove();
+
+    reloadButtons()
   }); //EOF btn remove entry
 
-  // write to local storage from input when button save clicked
+
   $('.btn-submit').on('click', function(){
 
     var getEntriesByClass = document.getElementsByClassName('text-entry');
@@ -70,50 +85,17 @@ $('list-display-field').change('change', function(){
     }
 
 
-    //TODO clear inputs on submit
-    //delete all entries except entry #1
+
     var entries = $('.entries-group').children().toArray();
     for(var i = entries.length; i > 1; i--){
       $("#entry" + i).remove();
     }
-    //reset global counter to 2
     counter = 2;
-    //clear entry#1 (reset value??)
     $('#text-entry1').val('');
     $('#text-entry1').attr("placeholder", "enter your link here");
 
-    $('.btn-delete').on('click', function(){
-     var removalItem = $(this).closest('div').attr('id');
-     localStorage.removeItem(removalItem);
-     displayLinksFromStorage()
-     resetDefaultGif();
-    }); //EOF btn-delete
+    reloadButtons();
 
-    $('.btn-load').on('click', function(){
-      var loadItem = localStorage.getItem($(this).closest('div').attr('id'));
-      $('#load').attr('src', loadItem);
-    });//EOF btn-load
   }); //EOF 'btn-submit' on click
-  // delete from local storage when delete button clicked
-  //TODO this needs to be fixed to work with numbered storage items somehow
-$('.btn-delete').on('click', function(){
-     var removalItem = $(this).closest('div').attr('id');
-     localStorage.removeItem(removalItem);
-     displayLinksFromStorage();
-     resetDefaultGif();
-    }); //EOF btn-delete
 
-  $('.btn-nuke').on('click', function(){
-    var keys = Object.keys(localStorage);
-    keys.forEach(function(el){
-      localStorage.removeItem(el);
-    });
-    displayLinksFromStorage();
-    resetDefaultGif();
-  }); //EOF btn nuke
-
-  $('.btn-load').on('click', function(){
-    var loadItem = localStorage.getItem($(this).closest('div').attr('id'));
-    $('#load').attr('src', loadItem);
-  });//EOF btn-load
 });
