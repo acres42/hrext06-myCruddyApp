@@ -11,7 +11,7 @@ function displayLinksFromStorage(){
   for (var i = 0, len = localStorage.length; i < len; ++i) {
     var stowed = (localStorage.getItem(localStorage.key(i)));
     var newDisplayLinkDiv = $(document.createElement('div')).attr("id", keys[i]);
-    newDisplayLinkDiv.after().html('<p>' +stowed+'</p');
+    newDisplayLinkDiv.after().html('<p>' +stowed+'</p><button class="btn-delete">delete this link</button>');
     newDisplayLinkDiv.appendTo(".list-display-field");
   }
 }
@@ -60,13 +60,20 @@ function displayLinksFromStorage(){
     $('#text-entry1').val('');
     $('#text-entry1').attr("placeholder", "enter your link here");
 
+    $('.btn-delete').on('click', function(){
+     var removalItem = $(this).closest('div').attr('id');
+     localStorage.removeItem(removalItem);
+     displayLinksFromStorage()
+    }); //EOF btn-delete
 
   }); //EOF 'btn-submit' on click
   // delete from local storage when delete button clicked
   //TODO this needs to be fixed to work with numbered storage items somehow
-  $('.btn-delete').on('click', function(){
-    localStorage.removeItem('inputFieldValue'+counter);
-  }); //EOF btn-delete
+$('.btn-delete').on('click', function(){
+     var removalItem = $(this).closest('div').attr('id');
+     localStorage.removeItem(removalItem);
+     displayLinksFromStorage()
+    }); //EOF
 
   $('.btn-nuke').on('click', function(){
     var keys = Object.keys(localStorage);
@@ -74,9 +81,5 @@ function displayLinksFromStorage(){
       localStorage.removeItem(el);
     });
     displayLinksFromStorage();
-    // for (var i = 0, len = localStorage.length; i < len; ++i) {
-    // var $stowed = (localStorage.getItem(localStorage.key(i)));
-    // localStorage.removeItem($stowed);
-    // }
   }); //EOF btn nuke
 });
