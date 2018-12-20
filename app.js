@@ -4,6 +4,7 @@ $(document).ready(function(){
 
   displayLinksFromStorage();
 
+  /*********************Helper Functions*******************/
 function displayLinksFromStorage(){
   //clear the list-display-field of current. reload with storage items
   $('.list-display-field').html('');
@@ -15,6 +16,27 @@ function displayLinksFromStorage(){
     newDisplayLinkDiv.appendTo(".list-display-field");
   }
 }
+
+function resetDefaultGif(){
+  $('#load').attr('src', 'https://media.giphy.com/media/mzSdSOMg59ZNC/giphy.gif');
+}
+
+// $('list-display-field').on('change', function(){ TODO:Y U NO WORK?!?!?
+//   console.log('list-display-field changed');
+
+//   $('.btn-delete').on('click', function(){
+//      var removalItem = $(this).closest('div').attr('id');
+//      localStorage.removeItem(removalItem);
+//      displayLinksFromStorage()
+//     }); //EOF btn-delete
+
+//   $('.btn-load').on('click', function(){
+//     var loadItem = localStorage.getItem($(this).closest('div').attr('id'));
+//     $('#load').attr('src', loadItem);
+//   });//EOF btn-load
+// });
+
+
 
   /*********************Buttons*******************/
 
@@ -72,7 +94,8 @@ function displayLinksFromStorage(){
 $('.btn-delete').on('click', function(){
      var removalItem = $(this).closest('div').attr('id');
      localStorage.removeItem(removalItem);
-     displayLinksFromStorage()
+     displayLinksFromStorage();
+     resetDefaultGif();
     }); //EOF btn-delete
 
   $('.btn-nuke').on('click', function(){
@@ -81,11 +104,11 @@ $('.btn-delete').on('click', function(){
       localStorage.removeItem(el);
     });
     displayLinksFromStorage();
+    resetDefaultGif();
   }); //EOF btn nuke
 
   $('.btn-load').on('click', function(){
     var loadItem = localStorage.getItem($(this).closest('div').attr('id'));
     $('#load').attr('src', loadItem);
-    console.log('dis is it');
   });//EOF btn-load
 });
