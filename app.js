@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(window).ready(function(){
   console.log('jQuery loaded');
   var counter = 2;
 
@@ -21,20 +21,20 @@ function resetDefaultGif(){
   $('#load').attr('src', 'https://media.giphy.com/media/mzSdSOMg59ZNC/giphy.gif');
 }
 
-// $('list-display-field').on('change', function(){ TODO:Y U NO WORK?!?!?
-//   console.log('list-display-field changed');
+$('list-display-field').change('change', function(){
+  console.log('list-display-field changed');
 
-//   $('.btn-delete').on('click', function(){
-//      var removalItem = $(this).closest('div').attr('id');
-//      localStorage.removeItem(removalItem);
-//      displayLinksFromStorage()
-//     }); //EOF btn-delete
+// //   $('.btn-delete').on('click', function(){
+// //      var removalItem = $(this).closest('div').attr('id');
+// //      localStorage.removeItem(removalItem);
+// //      displayLinksFromStorage()
+// //     }); //EOF btn-delete
 
-//   $('.btn-load').on('click', function(){
-//     var loadItem = localStorage.getItem($(this).closest('div').attr('id'));
-//     $('#load').attr('src', loadItem);
-//   });//EOF btn-load
-// });
+// //   $('.btn-load').on('click', function(){
+// //     var loadItem = localStorage.getItem($(this).closest('div').attr('id'));
+// //     $('#load').attr('src', loadItem);
+// //   });//EOF btn-load
+});
 
 
 
@@ -86,8 +86,13 @@ function resetDefaultGif(){
      var removalItem = $(this).closest('div').attr('id');
      localStorage.removeItem(removalItem);
      displayLinksFromStorage()
+     resetDefaultGif();
     }); //EOF btn-delete
 
+    $('.btn-load').on('click', function(){
+      var loadItem = localStorage.getItem($(this).closest('div').attr('id'));
+      $('#load').attr('src', loadItem);
+    });//EOF btn-load
   }); //EOF 'btn-submit' on click
   // delete from local storage when delete button clicked
   //TODO this needs to be fixed to work with numbered storage items somehow
