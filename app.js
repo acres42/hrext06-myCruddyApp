@@ -11,7 +11,7 @@ function displayLinksFromStorage(){
   for (var i = 0, len = localStorage.length; i < len; ++i) {
     var stowed = (localStorage.getItem(localStorage.key(i)));
     var newDisplayLinkDiv = $(document.createElement('div')).attr("id", keys[i]);
-    newDisplayLinkDiv.after().html('<p>' +stowed+'</p><button class="btn-delete">delete this link</button>');
+    newDisplayLinkDiv.after().html('<p>' +stowed+'</p><button class="btn-load">load this link</button><button class="btn-delete">delete this link</button>');
     newDisplayLinkDiv.appendTo(".list-display-field");
   }
 }
@@ -73,7 +73,7 @@ $('.btn-delete').on('click', function(){
      var removalItem = $(this).closest('div').attr('id');
      localStorage.removeItem(removalItem);
      displayLinksFromStorage()
-    }); //EOF
+    }); //EOF btn-delete
 
   $('.btn-nuke').on('click', function(){
     var keys = Object.keys(localStorage);
@@ -82,4 +82,10 @@ $('.btn-delete').on('click', function(){
     });
     displayLinksFromStorage();
   }); //EOF btn nuke
+
+  $('.btn-load').on('click', function(){
+    var loadItem = localStorage.getItem($(this).closest('div').attr('id'));
+    $('#load').attr('src', loadItem);
+    console.log('dis is it');
+  });//EOF btn-load
 });
